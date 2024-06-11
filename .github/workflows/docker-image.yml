@@ -39,6 +39,11 @@ jobs:
       - name: Debug COMMIT_SHA
         run: echo "Commit SHA is $COMMIT_SHA"
 
+      - name: Debug Environment Variables
+        run: |
+          echo "Docker Username: ${{ secrets.DOCKER_USERNAME }}"
+          echo "Commit SHA: $COMMIT_SHA"
+
       - name: Build and tag Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
