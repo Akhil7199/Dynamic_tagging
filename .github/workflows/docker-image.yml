@@ -39,23 +39,8 @@ jobs:
       - name: Debug COMMIT_SHA
         run: echo "Commit SHA is $COMMIT_SHA"
 
-      - name: Debug Environment Variables
-        run: |
-          echo "Docker Username: ${{ secrets.DOCKER_USERNAME }}"
-          echo "Commit SHA: $COMMIT_SHA"
-
       - name: Build and tag Docker image
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          COMMIT_SHA: ${{ env.COMMIT_SHA }}
-        run: |
-          echo "Building Docker image with tag $DOCKER_USERNAME/my-java-app:$COMMIT_SHA"
-          docker build -t $DOCKER_USERNAME/my-java-app:$COMMIT_SHA .
+        run: docker build -t akhil7199/my-java-app:$COMMIT_SHA .
 
       - name: Push Docker image
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          COMMIT_SHA: ${{ env.COMMIT_SHA }}
-        run: |
-          echo "Pushing Docker image with tag $DOCKER_USERNAME/my-java-app:$COMMIT_SHA"
-          docker push $DOCKER_USERNAME/my-java-app:$COMMIT_SHA
+        run: docker push akhil7199/my-java-app:$COMMIT_SHA
