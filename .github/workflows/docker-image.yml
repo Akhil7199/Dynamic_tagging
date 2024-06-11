@@ -36,9 +36,6 @@ jobs:
         id: vars
         run: echo "COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
-      - name: Debug Docker Username
-        run: echo "Docker Username: ${{ secrets.DOCKER_USERNAME }}"
-
       - name: Debug COMMIT_SHA
         run: echo "Commit SHA is $COMMIT_SHA"
 
