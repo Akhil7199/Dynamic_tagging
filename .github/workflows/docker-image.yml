@@ -40,7 +40,7 @@ jobs:
         run: echo "Commit SHA is $COMMIT_SHA"
 
       - name: Build and tag Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ env.COMMIT_SHA }} .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ COMMIT_SHA }} .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ env.COMMIT_SHA }}
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ COMMIT_SHA }}
