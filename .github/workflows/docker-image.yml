@@ -42,11 +42,15 @@ jobs:
       - name: Build and tag Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          COMMIT_SHA: $COMMIT_SHA
-        run: docker build -t $DOCKER_USERNAME/my-java-app:$COMMIT_SHA .
+          COMMIT_SHA: ${{ env.COMMIT_SHA }}
+        run: |
+          echo "Building Docker image with tag $DOCKER_USERNAME/my-java-app:$COMMIT_SHA"
+          docker build -t $DOCKER_USERNAME/my-java-app:$COMMIT_SHA .
 
       - name: Push Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          COMMIT_SHA: $COMMIT_SHA
-        run: docker push $DOCKER_USERNAME/my-java-app:$COMMIT_SHA
+          COMMIT_SHA: ${{ env.COMMIT_SHA }}
+        run: |
+          echo "Pushing Docker image with tag $DOCKER_USERNAME/my-java-app:$COMMIT_SHA"
+          docker push $DOCKER_USERNAME/my-java-app:$COMMIT_SHA
