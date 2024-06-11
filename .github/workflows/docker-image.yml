@@ -36,8 +36,11 @@ jobs:
         id: vars
         run: echo "commit_sha=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
+      - name: Debug COMMIT_SHA
+        run: echo "Commit SHA is $COMMIT_SHA"
+
       - name: Build and tag Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ steps.vars.outputs.commit_sha }} .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ env.commit_sha }} .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ steps.vars.outputs.commit_sha }}
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:${{ env.commit_sha }}
