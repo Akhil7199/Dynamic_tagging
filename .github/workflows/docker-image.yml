@@ -48,5 +48,5 @@ jobs:
         run: docker push akhil7199/my-java-app:$COMMIT_SHA
 
       - name: Print the name
-        run: ${{env.name}}
-        
+        run: echo ${{env.name}}
+
